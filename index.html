@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -223,6 +224,13 @@ button{
       <textarea id="extra"></textarea>
 
       <button class="primary" type="submit">Submit application</button>
+
+      <p class="small" style="margin-top:15px;text-align:center;">
+        After submitting your application, please open a ticket on the Discord server
+        and mention that you completed the moderator application questionnaire.
+        Please also include the Twitch username you used in the application so we can identify it.
+      </p>
+
     </form>
 
     <div id="submitted" class="success hidden">
@@ -262,7 +270,7 @@ button{
 </div>
 
 <script>
-const ADMIN_PASSWORD = "PASSE";
+const ADMIN_PASSWORD = "passe";
 const STORAGE_KEY = "donutSmpModeratorApplications";
 
 const questions = [
@@ -419,3 +427,4 @@ document.getElementById("adminPassword").addEventListener("keydown", function(e)
 
 </body>
 </html>
+```
