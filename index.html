@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donut SMP — Moderator Applications</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#111;
+  color:#eee;
+}
+.container{max-width:850px;margin:0 auto;padding:30px 18px 60px}
+header{text-align:center;padding:35px 10px 25px}
+h1{margin:0 0 10px;font-size:34px}
+.subtitle{color:#aaa;font-size:16px}
+.card{
+  background:#1c1c1c;
+  border:1px solid #303030;
+  border-radius:14px;
+  padding:25px;
+  margin-top:20px;
+}
+h2{margin-top:0;font-size:22px}
+h3{font-size:17px;margin:28px 0 10px}
+label{display:block;font-weight:bold;margin:18px 0 8px}
+input,textarea,select{
+  width:100%;
+  background:#101010;
+  color:#fff;
+  border:1px solid #444;
+  border-radius:8px;
+  padding:12px;
+  font-size:15px;
+  outline:none;
+}
+input:focus,textarea:focus,select:focus{border-color:#888}
+textarea{min-height:100px;resize:vertical}
+button{
+  border:0;
+  border-radius:8px;
+  padding:12px 18px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.primary{background:#fff;color:#111;width:100%;margin-top:25px}
+.primary:hover{background:#ddd}
+.admin-btn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:#222;
+  color:#fff;
+  border:1px solid #444;
+  z-index:5;
+}
+.hidden{display:none!important}
+.question{padding-bottom:5px}
+.radio label{
+  font-weight:normal;
+  margin:8px 0;
+  display:flex;
+  gap:9px;
+  align-items:center;
+}
+.radio input{width:auto}
+.notice{
+  background:#242424;
+  border-left:3px solid #aaa;
+  padding:12px;
+  border-radius:5px;
+  color:#ccc;
+  font-size:14px;
+}
+.status{text-align:center;padding:18px;color:#aaa}
+.application{
+  border:1px solid #383838;
+  border-radius:10px;
+  padding:18px;
+  margin:12px 0;
+  background:#171717;
+}
+.application h3{margin:0 0 10px}
+.answer{margin:8px 0;color:#ccc}
+.answer b{color:#fff}
+.small{font-size:13px;color:#888}
+.danger{background:#351b1b;color:#ffb0b0;border:1px solid #633}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.admin-actions button{background:#333;color:#fff}
+.delete{background:#512020!important}
+.back{background:#333;color:#fff;margin-top:10px}
+.success{
+  background:#19301f;
+  border:1px solid #315b3b;
+  color:#b9e8c3;
+  padding:15px;
+  border-radius:8px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<button class="admin-btn" onclick="openAdmin()">Admin</button>
+
+<div class="container">
+
+<header>
+  <h1>Donut SMP</h1>
+  <div class="subtitle">Moderator Application</div>
+</header>
+
+<!-- APPLICATION -->
+<section id="applicationPage">
+  <div class="card">
+    <h2>Moderator Application</h2>
+    <p class="notice">
+      Please answer honestly. We are looking for active, mature and reliable people
+      who can handle chat situations calmly.
+    </p>
+
+    <form id="applicationForm">
+
+      <h3>Basic information</h3>
+
+      <label for="twitch">Twitch username</label>
+      <input id="twitch" required>
+
+      <label for="minecraft">Minecraft username</label>
+      <input id="minecraft" required>
+
+      <label for="discord">Discord username</label>
+      <input id="discord" required>
+
+      <label for="age">Age</label>
+      <input id="age" type="number" min="1" max="100" required>
+
+      <label for="watching">How long have you been watching the streams?</label>
+      <select id="watching" required>
+        <option value="">Select...</option>
+        <option>Less than 1 month</option>
+        <option>1–3 months</option>
+        <option>3–6 months</option>
+        <option>6+ months</option>
+      </select>
+
+      <label for="timezone">Timezone</label>
+      <input id="timezone" placeholder="Example: CET / UTC+1" required>
+
+      <h3>Experience</h3>
+
+      <label>Have you ever been a moderator before?</label>
+      <div class="radio">
+        <label><input type="radio" name="experience" value="Yes" required> Yes</label>
+        <label><input type="radio" name="experience" value="No"> No</label>
+      </div>
+
+      <label for="experienceText">If yes, where and for how long?</label>
+      <textarea id="experienceText"></textarea>
+
+      <label for="why">Why do you want to become a moderator?</label>
+      <textarea id="why" required></textarea>
+
+      <label for="goodmod">What makes a good moderator?</label>
+      <textarea id="goodmod" required></textarea>
+
+      <h3>Situations</h3>
+
+      <label for="q1">Someone sends 8 messages in a row because they are excited. Would you ban them? Why or why not?</label>
+      <textarea id="q1" required></textarea>
+
+      <label for="q2">Someone keeps spamming after receiving a timeout. What do you do?</label>
+      <textarea id="q2" required></textarea>
+
+      <label for="q3">Someone personally accuses me of scamming or hacking someone. What do you do?</label>
+      <textarea id="q3" required></textarea>
+
+      <label for="q4">Someone says: “The Donut SMP is trash.” What do you do?</label>
+      <textarea id="q4" required></textarea>
+
+      <label for="q5">Someone makes a racist comment and then says they were joking. What do you do?</label>
+      <textarea id="q5" required></textarea>
+
+      <label for="q6">Two viewers start arguing and insulting each other. What do you do?</label>
+      <textarea id="q6" required></textarea>
+
+      <label for="q7">A viewer you know personally breaks a rule. Would you treat them differently? Explain.</label>
+      <textarea id="q7" required></textarea>
+
+      <label for="q8">Another moderator bans someone and you think the ban was unnecessary. What do you do?</label>
+      <textarea id="q8" required></textarea>
+
+      <label for="q9">I ask you to post the Discord link, but another moderator posted it 10 seconds ago. Do you post it again?</label>
+      <textarea id="q9" required></textarea>
+
+      <label for="q10">Someone asks how to buy or sell a spawner. What do you tell them?</label>
+      <textarea id="q10" required></textarea>
+
+      <label for="q11">I ask you to start a Twitch poll while you are dealing with a spammer. What do you handle first?</label>
+      <textarea id="q11" required></textarea>
+
+      <label for="q12">You are not sure whether someone deserves a temporary or permanent ban. What do you do?</label>
+      <textarea id="q12" required></textarea>
+
+      <label for="q13">You accidentally ban the wrong person. What do you do?</label>
+      <textarea id="q13" required></textarea>
+
+      <h3>Availability</h3>
+
+      <label for="availability">How often can you be present during streams?</label>
+      <select id="availability" required>
+        <option value="">Select...</option>
+        <option>Almost every stream</option>
+        <option>Several times a week</option>
+        <option>About once a week</option>
+        <option>Occasionally</option>
+      </select>
+
+      <label for="extra">Anything else you want to add?</label>
+      <textarea id="extra"></textarea>
+
+      <button class="primary" type="submit">Submit application</button>
+    </form>
+
+    <div id="submitted" class="success hidden">
+      Your application has been saved. Thank you!
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN LOGIN -->
+<section id="loginPage" class="hidden">
+  <div class="card">
+    <h2>Admin</h2>
+    <p class="small">Enter the admin password to access applications.</p>
+    <input id="adminPassword" type="password" placeholder="Password">
+    <button class="primary" onclick="login()">Login</button>
+    <button class="back" onclick="closeAdmin()">Back</button>
+    <p id="loginError" class="danger hidden">Incorrect password.</p>
+  </div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="adminPage" class="hidden">
+  <div class="card">
+    <h2>Applications</h2>
+    <p id="applicationCount" class="small"></p>
+
+    <div class="admin-actions">
+      <button onclick="refreshApplications()">Refresh</button>
+      <button class="delete" onclick="deleteAllApplications()">Delete all applications</button>
+      <button onclick="closeAdmin()">Back</button>
+    </div>
+
+    <div id="applications"></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const ADMIN_PASSWORD = "PASSE";
+const STORAGE_KEY = "donutSmpModeratorApplications";
+
+const questions = [
+  ["Twitch username","twitch"],
+  ["Minecraft username","minecraft"],
+  ["Discord username","discord"],
+  ["Age","age"],
+  ["How long have you been watching the streams?","watching"],
+  ["Timezone","timezone"],
+  ["Have you ever been a moderator before?","experience"],
+  ["Previous moderation experience","experienceText"],
+  ["Why do you want to become a moderator?","why"],
+  ["What makes a good moderator?","goodmod"],
+  ["8 messages in a row","q1"],
+  ["Spamming after a timeout","q2"],
+  ["Personal scam/hacking accusation","q3"],
+  ["Saying the Donut SMP is trash","q4"],
+  ["Racist comment","q5"],
+  ["Two viewers arguing","q6"],
+  ["Friend breaking a rule","q7"],
+  ["Disagreeing with another moderator","q8"],
+  ["Discord link already posted","q9"],
+  ["Buying/selling spawners","q10"],
+  ["Poll vs spammer","q11"],
+  ["Unsure about a ban","q12"],
+  ["Wrongful ban","q13"],
+  ["Availability","availability"],
+  ["Anything else","extra"]
+];
+
+function getApplications(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  }catch(e){
+    return [];
+  }
+}
+
+function saveApplications(apps){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(apps));
+}
+
+document.getElementById("applicationForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const data = {
+    date: new Date().toLocaleString(),
+    answers: {}
+  };
+
+  questions.forEach(([label,id])=>{
+    if(id === "experience"){
+      const selected = document.querySelector('input[name="experience"]:checked');
+      data.answers[id] = selected ? selected.value : "";
+    }else{
+      data.answers[id] = document.getElementById(id).value.trim();
+    }
+  });
+
+  const apps = getApplications();
+  apps.push(data);
+  saveApplications(apps);
+
+  document.getElementById("applicationForm").classList.add("hidden");
+  document.getElementById("submitted").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+function openAdmin(){
+  document.getElementById("applicationPage").classList.add("hidden");
+  document.getElementById("adminPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("adminPassword").value="";
+  document.getElementById("loginError").classList.add("hidden");
+}
+
+function closeAdmin(){
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("adminPage").classList.add("hidden");
+  document.getElementById("applicationPage").classList.remove("hidden");
+}
+
+function login(){
+  const password = document.getElementById("adminPassword").value;
+
+  if(password === ADMIN_PASSWORD){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("adminPage").classList.remove("hidden");
+    refreshApplications();
+  }else{
+    document.getElementById("loginError").classList.remove("hidden");
+  }
+}
+
+function refreshApplications(){
+  const apps = getApplications();
+  const container = document.getElementById("applications");
+  document.getElementById("applicationCount").textContent =
+    apps.length + (apps.length === 1 ? " application" : " applications");
+
+  container.innerHTML="";
+
+  if(apps.length === 0){
+    container.innerHTML='<p class="status">No applications yet.</p>';
+    return;
+  }
+
+  apps.slice().reverse().forEach((app,index)=>{
+    const realIndex = apps.length - 1 - index;
+    const div = document.createElement("div");
+    div.className="application";
+
+    let html = `<h3>Application #${realIndex + 1}</h3>
+                <div class="small">Submitted: ${escapeHTML(app.date)}</div>`;
+
+    questions.forEach(([label,id])=>{
+      let value = app.answers[id] || "—";
+      html += `<div class="answer"><b>${escapeHTML(label)}:</b><br>${escapeHTML(value).replace(/\n/g,"<br>")}</div>`;
+    });
+
+    html += `<button class="delete" onclick="deleteApplication(${realIndex})">Delete this application</button>`;
+    div.innerHTML=html;
+    container.appendChild(div);
+  });
+}
+
+function deleteApplication(index){
+  if(!confirm("Delete this application?")) return;
+  const apps = getApplications();
+  apps.splice(index,1);
+  saveApplications(apps);
+  refreshApplications();
+}
+
+function deleteAllApplications(){
+  if(!confirm("Delete ALL applications? This cannot be undone.")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  refreshApplications();
+}
+
+function escapeHTML(str){
+  return String(str)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+document.getElementById("adminPassword").addEventListener("keydown", function(e){
+  if(e.key === "Enter") login();
+});
+</script>
+
+</body>
+</html>
